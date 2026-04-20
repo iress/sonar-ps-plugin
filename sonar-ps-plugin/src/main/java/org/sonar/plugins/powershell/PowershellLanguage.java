@@ -18,8 +18,7 @@ public class PowershellLanguage extends AbstractLanguage {
     }
 
     public String[] getFileSuffixes() {
-        final String[] suffixes = this.config.get("sonar.ps.file.suffixes").map(s -> s.split(",")).orElse(DEFAULT_FILE_SUFFIXES);
-        return suffixes;
+        return this.config.get("sonar.ps.file.suffixes").map(s -> s.split(",")).orElse(DEFAULT_FILE_SUFFIXES);
     }
 
 }
