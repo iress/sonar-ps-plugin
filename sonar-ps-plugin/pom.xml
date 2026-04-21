@@ -14,8 +14,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.apiVersion>10.11.0.2468</sonar.apiVersion>
-		    <sonar.testingHarnessVersion>10.7.0.96327</sonar.testingHarnessVersion>
+		<sonar.apiVersion>13.5.0.4319</sonar.apiVersion>
+		    <sonar.testingHarnessVersion>26.4.0.121862</sonar.testingHarnessVersion>
 		<jdk.min.version>21</jdk.min.version>
 	</properties>
 	<issueManagement>
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.12.0</version>
+			<version>3.18.0</version>
 		</dependency>
 
 
