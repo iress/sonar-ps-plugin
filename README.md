@@ -1,21 +1,17 @@
 # sonar-ps-plugin
 
-Repository for Powershell language plugin for Sonar.
+Maintained fork of the [PowerShell language plugin for SonarQube](https://github.com/gretard/sonar-ps-plugin).
 
 ## Description ##
-Currently plug-in supports:
+Currently plugin supports:
 
 - Reporting of issues found by [PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer)
 - Cyclomatic and cognitive complexity metrics (since version 0.3.0)
 - Reporting number of lines of code and comment lines metrics  (since version 0.3.2)
 
-Dev-Branch: [![Build Status - develop](https://dev.azure.com/kgreta/sonar-ps-plugin/_apis/build/status/gretard.sonar-ps-plugin?branchName=develop)](https://dev.azure.com/kgreta/sonar-ps-plugin/_build/latest?definitionId=1&branchName=develop)
-
-Master-Branch: [![Build Status - master](https://dev.azure.com/kgreta/sonar-ps-plugin/_apis/build/status/gretard.sonar-ps-plugin?branchName=master)](https://dev.azure.com/kgreta/sonar-ps-plugin/_build/latest?definitionId=1&branchName=master)
-
 
 ## Donating ##
-You can support this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
+You can support the original author of this [project and others](https://github.com/gretard) via [Paypal](https://www.paypal.me/greta514284/)
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/greta514284/)
 
@@ -48,11 +44,31 @@ Currently there is a possibility to override the following options either on ser
 - **sonar.ps.external.rules.skip** - list of repo:ruleId comma separated pairs to skip reporting of issues found by rules (since version 0.5.0)
 
 ## Requirements ##
-Different plugin versions supports the following:
-- 0.7.0 - Sonarqube version LTA 2026.2+ and PSScriptAnalyzer version 1.25+ rules, Java 21+
-- 0.5.3 - Sonarqube version 8.9.2+ and PSScriptAnalyzer version 1.20+ rules, Java 17+
-- 0.5.1 - Sonarqube version 8.9.2+ and PSScriptAnalyzer version 1.20+ rules, Java 11+
-- 0.5.0 - Sonarqube version 6.7.7+ and PSScriptAnalyzer version 1.18.1 rules, Java 8
-- 0.3.0 - Sonarqube version 6.3+ and PSScriptAnalyzer version 1.17.1 rules, Java 8
-- 0.2.2 - Sonarqube 5.6+ version and PSScriptAnalyzer version 1.17.1 rules, Java 8
+Different plugin versions support the following:
+
+| Plugin Version | SonarQube Version | PSScriptAnalyzer Rules | Java | Notes |
+|---|---|---|---|---|
+| 0.6.0 | LTA 2026.1+ | 1.25+ | 21+ | Current |
+| 0.5.4 | 8.9.2+ | 1.20+ | 17+ | Optimizations and fixes for SonarQube 10+ |
+| 0.5.3 | 8.9.2+ | 1.20+ | 17+ |  |
+| 0.5.1 | 8.9.2+ | 1.20+ | 11+ |  |
+| 0.5.0 | 6.7.7+ | 1.18.1 | 8 |  |
+| 0.3.0 | 6.3+ | 1.17.1 | 8 |  |
+| 0.2.2 | 5.6+ | 1.17.1 | 8 |  |
+
+## Development ##
+Build and test using Docker Compose:
+- Run tests: `docker compose run --rm test`
+- Build package: `docker compose run --rm build`
+- Use a custom Docker registry: `DEFAULT_DOCKER_REPO=your.registry.com/path docker compose run --rm test`
+
+**Upgrading Java:** Update at least the base image tag in [docker-compose.yml](docker-compose.yml) and `jdk.min.version` in `pom.xml`.
+
+**Upgrading PSScriptAnalyzer:** Run `regenerateRulesDefinition.ps1` to generate new rules, then update `PSSCRIPTANALYZER_VERSION` in the [Dockerfile](Dockerfile).
+
+**Upgrading SonarQube API:** `sonar.apiVersion` is generally backwards compatible. Upgrade `sonar.apiVersion` when you need new API endpoints or when existing ones are deprecated/removed. Also upgrade `sonar.testingHarnessVersion` to match the same SonarQube release.
+
+**Releasing:** Increment version in `pom.xml`, build with `docker compose run --rm build`, create a [GitHub release](https://github.com/gretard/sonar-ps-plugin/releases), and attach the `.jar` from `sonar-ps-plugin/target/`.
+
+
 

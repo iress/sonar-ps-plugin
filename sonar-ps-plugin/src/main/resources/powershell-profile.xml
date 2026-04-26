@@ -76,6 +76,10 @@
             <repositoryKey>ps-psanalyzer</repositoryKey>
         </rule>
         <rule>
+            <key>PSAvoidReservedWordsAsFunctionNames</key>
+            <repositoryKey>ps-psanalyzer</repositoryKey>
+        </rule>
+        <rule>
             <key>PSAvoidSemicolonsAsLineTerminators</key>
             <repositoryKey>ps-psanalyzer</repositoryKey>
         </rule>
@@ -200,7 +204,19 @@
             <repositoryKey>ps-psanalyzer</repositoryKey>
         </rule>
         <rule>
+            <key>PSUseConsistentParameterSetName</key>
+            <repositoryKey>ps-psanalyzer</repositoryKey>
+        </rule>
+        <rule>
+            <key>PSUseConsistentParametersKind</key>
+            <repositoryKey>ps-psanalyzer</repositoryKey>
+        </rule>
+        <rule>
             <key>PSUseConsistentWhitespace</key>
+            <repositoryKey>ps-psanalyzer</repositoryKey>
+        </rule>
+        <rule>
+            <key>PSUseConstrainedLanguageMode</key>
             <repositoryKey>ps-psanalyzer</repositoryKey>
         </rule>
         <rule>
@@ -233,6 +249,10 @@
         </rule>
         <rule>
             <key>PSUseShouldProcessForStateChangingFunctions</key>
+            <repositoryKey>ps-psanalyzer</repositoryKey>
+        </rule>
+        <rule>
+            <key>PSUseSingleValueFromPipelineParameter</key>
             <repositoryKey>ps-psanalyzer</repositoryKey>
         </rule>
         <rule>

@@ -1,0 +1,32 @@
+services:
+  base:
+    build:
+      context: .
+      args:
+        BASE_IMAGE: ${DEFAULT_DOCKER_REPO:+${DEFAULT_DOCKER_REPO}/}maven:3-amazoncorretto-21
+    volumes:
+      - .:/work
+      - ${HOME}/.m2:/root/.m2
+    working_dir: /work
+
+  build:
+    extends: base
+    command:
+      - mvn
+      - -B
+      - -ntp
+      - -f
+      - sonar-ps-plugin/pom.xml
+      - clean
+      - package
+
+  test:
+    extends: base
+    command:
+      - mvn
+      - -B
+      - -ntp
+      - -f
+      - sonar-ps-plugin/pom.xml
+      - clean
+      - test
