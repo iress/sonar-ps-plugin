@@ -49,7 +49,7 @@ Different plugin versions support the following:
 | Plugin Version | SonarQube Version | PSScriptAnalyzer Rules | Java | Notes |
 |---|---|---|---|---|
 | 0.6.0 | LTA 2026.1+ | 1.25+ | 21+ | Current |
-| 0.5.4 | 8.9.2+ | 1.20+ | 17+ | Optimizations and fixes for SonarQube 10+ |
+| 0.5.4 | 8.9.2+ | 1.22+ | 17+ | Optimizations and fixes for SonarQube 10+ |
 | 0.5.3 | 8.9.2+ | 1.20+ | 17+ |  |
 | 0.5.1 | 8.9.2+ | 1.20+ | 11+ |  |
 | 0.5.0 | 6.7.7+ | 1.18.1 | 8 |  |
@@ -68,7 +68,7 @@ Build and test using Docker Compose:
 
 **Upgrading SonarQube API:** `sonar.apiVersion` is generally backwards compatible. Upgrade `sonar.apiVersion` when you need new API endpoints or when existing ones are deprecated/removed. Also upgrade `sonar.testingHarnessVersion` to match the same SonarQube release.
 
-**Releasing:** Increment version in `pom.xml`, build with `docker compose run --rm build`, create a [GitHub release](https://github.com/gretard/sonar-ps-plugin/releases), and attach the `.jar` from `sonar-ps-plugin/target/`.
+**Releasing:** Increment version in `pom.xml`, build with `docker compose run --rm build`, create a [GitHub release](https://github.com/iress/sonar-ps-plugin), and attach the `.jar` from `sonar-ps-plugin/target/`.
 
 
 
