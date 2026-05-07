@@ -7,15 +7,16 @@
 	<groupId>org.sonar.plugins</groupId>
 	<artifactId>sonar-ps-plugin</artifactId>
 	<packaging>sonar-plugin</packaging>
-	<version>0.5.4</version>
+	<version>0.6.0</version>
 
 	<name>Powershell Plugin for SonarQube</name>
 	<description>Powershell plugin for SonarQube</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.apiVersion>8.9.2.46101</sonar.apiVersion>
-		<jdk.min.version>1.9</jdk.min.version>
+		<sonar.apiVersion>13.4.3.4290</sonar.apiVersion>
+		    <sonar.testingHarnessVersion>26.1.0.118079</sonar.testingHarnessVersion>
+		<jdk.min.version>21</jdk.min.version>
 	</properties>
 	<issueManagement>
 		<system>GitHub Issues</system>
@@ -41,23 +42,16 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.sonarsource.sonarqube</groupId>
+	   	    <groupId>org.sonarsource.api.plugin</groupId>
 			<artifactId>sonar-plugin-api</artifactId>
 			<version>${sonar.apiVersion}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api-impl -->
 		<dependency>
-			<groupId>org.sonarsource.sonarqube</groupId>
-			<artifactId>sonar-plugin-api-impl</artifactId>
-			<version>${sonar.apiVersion}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.12.0</version>
+			<version>3.18.0</version>
 		</dependency>
 
 
@@ -72,9 +66,16 @@
 		<dependency>
 			<groupId>org.sonarsource.sonarqube</groupId>
 			<artifactId>sonar-testing-harness</artifactId>
-			<version>${sonar.apiVersion}</version>
+			<version>${sonar.testingHarnessVersion}</version>
+			<scope>test</scope>
+			</dependency>
+				<dependency>
+			<groupId>org.sonarsource.sonarqube</groupId>
+			<artifactId>sonar-plugin-api-impl</artifactId>
+			<version>${sonar.testingHarnessVersion}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -99,10 +100,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.13.0</version>
 				<configuration>
-					<source>${jdk.min.version}</source>
-					<target>${jdk.min.version}</target>
+					<release>${jdk.min.version}</release>
 				</configuration>
 			</plugin>
 		</plugins>
