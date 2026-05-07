@@ -57,10 +57,6 @@ Different plugin versions support the following:
 | 0.2.2 | 5.6+ | 1.17.1 | 8 |  |
 
 ## Development ##
-Build and test using Docker Compose:
-- Run tests: `docker compose run --rm test`
-- Build package: `docker compose run --rm build`
-- Use a custom Docker registry: `DEFAULT_DOCKER_REPO=your.registry.com/path docker compose run --rm test`
 
 **Upgrading Java:** Update at least the base image tag in [docker-compose.yml](docker-compose.yml) and `jdk.min.version` in `pom.xml`.
 
