@@ -63,7 +63,8 @@ public class TokenizerSensor extends BaseSensor implements org.sonar.api.batch.s
         final String scriptFile = parserFile.getAbsolutePath();
         final org.sonar.api.batch.fs.FileSystem fs = context.fileSystem();
         final FilePredicates p = fs.predicates();
-        ExecutorService service = Executors.newVirtualThreadPerTaskExecutor();
+        final int workerCount = Math.max(2, Runtime.getRuntime().availableProcessors());
+        final ExecutorService service = Executors.newFixedThreadPool(workerCount);
         final Iterable<InputFile> inputFiles = fs.inputFiles(p.and(p.hasLanguage(PowershellLanguage.KEY)));
         for (final InputFile inputFile : inputFiles) {
 
@@ -126,9 +127,14 @@ public class TokenizerSensor extends BaseSensor implements org.sonar.api.batch.s
             long timeout = config.get("sonar.ps.tokenizer.timeout").map(Long::parseLong).orElse(3600L);
             LOGGER.info("Waiting for file analysis to finish for " + timeout + " seconds");
             service.shutdown();
-            service.awaitTermination(timeout, TimeUnit.SECONDS);
-            service.shutdownNow();
+            final boolean completed = service.awaitTermination(timeout, TimeUnit.SECONDS);
+            if (!completed) {
+                LOGGER.warn("Tokenizer analysis did not complete within timeout, forcing shutdown");
+                service.shutdownNow();
+            }
         } catch (final InterruptedException e) {
+            service.shutdownNow();
+            Thread.currentThread().interrupt();
             LOGGER.warn("Unexpected error while running waiting for executor service to finish", e);
         }
 

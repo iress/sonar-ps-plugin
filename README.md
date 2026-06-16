@@ -48,7 +48,8 @@ Different plugin versions support the following:
 
 | Plugin Version | SonarQube Version | PSScriptAnalyzer Rules | Java | Notes |
 |---|---|---|---|---|
-| 0.6.0 | LTA 2026.1+ | 1.25+ | 21+ | Current |
+| 0.7.0 | LTA 2026.1+ | 1.25+ | 17+ | Current |
+| 0.6.0 | LTA 2026.1+ | 1.25+ | 21+ | Java 21 compiled version |
 | 0.5.4 | 8.9.2+ | 1.22+ | 17+ | Optimizations and fixes for SonarQube 10+ |
 | 0.5.3 | 8.9.2+ | 1.20+ | 17+ |  |
 | 0.5.1 | 8.9.2+ | 1.20+ | 11+ |  |
