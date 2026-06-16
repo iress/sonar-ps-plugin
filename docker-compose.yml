@@ -30,3 +30,4 @@ services:
       - sonar-ps-plugin/pom.xml
       - clean
       - test
+      
